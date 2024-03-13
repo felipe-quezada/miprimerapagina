@@ -1,0 +1,313 @@
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+.madimi-one-regular {
+  font-family: 'Madimi One', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.navbar-container {
+  z-index: 10000;
+  display: flex;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  background-color: orange;
+  align-items: center;
+  padding-inline: 20px;
+  height: 50px;
+}
+.menu-mobile {
+  display: none;
+  appearance: none;
+}
+.checkbtn {
+  display: none;
+}
+.navigate-to-home {
+  color: green;
+  font-size: 2em;
+  transition: color 0.5s ease;
+}
+.navigate-to-home:hover {
+  color: blueviolet;
+  transition: color 0.5s ease;
+}
+
+.navigate-container ul {
+  list-style: none;
+  display: flex;
+  justify-content: right;
+  gap: 20px;
+}
+
+/* TODO: usando position en el nav */
+
+.navigate-link {
+  position: relative; /* ? pa que funcione como padre */
+  cursor: pointer; /* ? pa que cambie el puntero a manita */
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.navigate-link::after {
+  content: ' '; /* ? agrega esto como cadena de texto antes del elemento */
+  position: absolute; /* ? posisionamiento que no afecta los elementos internos */
+  background-color: black;
+  border-radius: 2px;
+  width: 100%; /* ? pa que tenga el tamaño del contenedor padre */
+  height: 4px;
+  bottom: -3px;
+  left: 0;
+  transform: scaleX(0); /* ? escala el elemento rango 0 - 1 */
+  transform-origin: center; /* ? el origen desde donde se hace el escalado */
+  transition: transform 0.2s ease-in-out; /* ? le da un tipo de animación */
+}
+
+.navigate-link:hover::after {
+  transform: scaleX(1);
+}
+
+#seccion-1 {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 740px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-wrap: pretty;
+  gap: 20px;
+}
+
+.acerca-de {
+  width: 50%;
+}
+
+.acerca-imagen {
+  width: 400px;
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  margin: 20px auto;
+}
+
+#seccion-2 {
+  img {
+    width: 100%;
+    height: 800px;
+    object-fit: fill;
+  }
+}
+
+#trabajos {
+  padding-block: 70px;
+  text-align: center;
+}
+
+.card-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.card {
+  width: 450px;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.card:hover {
+  img {
+    animation-play-state: running;
+  }
+}
+
+.card-image {
+  img {
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: 0 0;
+    animation-name: poke;
+    animation-duration: 30s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+  }
+}
+
+.card-info {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: antiquewhite;
+  border-radius: 0 0 20px 20px;
+  padding: 10px;
+}
+
+.card-button {
+  margin-top: 10px;
+  border: none;
+  background-color: grey;
+  color: whitesmoke;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.card-button:hover {
+  background-color: red;
+}
+
+.footer {
+  text-align: center;
+  background-color: gray;
+  padding: 20px;
+}
+
+.footer-nav {
+  width: fit-content;
+  margin: auto;
+}
+
+.footer-nav__list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+@keyframes poke {
+  0% {
+    object-position: 0 0;
+  }
+  100% {
+    object-position: 0 100%;
+  }
+}
+
+@keyframes horizontal {
+  0% {
+    object-position: 0 0;
+  }
+  100% {
+    object-position: 100% 0;
+  }
+}
+
+@media (width < 769px) {
+  .navMenu-container {
+    position: fixed;
+    width: 100%;
+    height: calc(100dvh - 50px);
+    left: 100%;
+    top: 50px;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    background-color: black;
+    transition: left 0.5s;
+    li,
+    a {
+      color: aliceblue;
+      font-size: 20px;
+    }
+  }
+  .navMenu-container.active {
+    left: 0;
+  }
+  .checkbtn {
+    display: block;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  #seccion-1 {
+    flex-direction: column-reverse;
+  }
+  .card-container {
+    gap: 40px;
+  }
+}
+
+.form-seccion {
+  width: 100%;
+  max-width: 800px;
+  padding-block: 20px;
+  margin: 50px auto;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+.form-title {
+  width: 200px;
+  margin: auto;
+  padding-top: 70px;
+  text-align: center;
+  text-decoration: underline black;
+}
+
+.form-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.form-item-container input[type='text'],
+.form-item-container input[type='email'] {
+  width: 300px;
+  padding: 10px 20px;
+  margin-block: 20px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+.form-item-container textarea {
+  width: 300px;
+  padding: 10px 20px;
+  margin-block: 20px;
+  height: 250px;
+  resize: none;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.form-item-container .error-name-validate {
+  position: absolute;
+  bottom: 2px;
+  color: red;
+}
+
+.form-seccion button {
+  width: 250px;
+  padding: 10px;
+  margin-block: 20px;
+}
